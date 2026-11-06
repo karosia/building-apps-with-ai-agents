@@ -1,0 +1,14 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Build outputs
+*.test
+*.out
+/bin/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
