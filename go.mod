@@ -3,6 +3,7 @@ module building-apps-with-ai-agents
 go 1.25.0
 
 require (
+	github.com/coder/websocket v1.8.15
 	github.com/joho/godotenv v1.5.1
 	github.com/smallnest/langgraphgo v0.8.5
 	github.com/tmc/langchaingo v0.1.15
