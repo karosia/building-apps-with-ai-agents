@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 	"github.com/smallnest/langgraphgo/graph"
@@ -217,16 +218,16 @@ func main() {
 
 // contentString converts a message's parts into a human-readable string.
 func contentString(msg llms.MessageContent) string {
-	var s string
+	var s strings.Builder
 	for _, p := range msg.Parts {
 		switch v := p.(type) {
 		case llms.TextContent:
-			s += v.Text
+			s.WriteString(v.Text)
 		case llms.ToolCall:
-			s += fmt.Sprintf("[tool_call %s(%s)]", v.FunctionCall.Name, v.FunctionCall.Arguments)
+			fmt.Fprintf(&s, "[tool_call %s(%s)]", v.FunctionCall.Name, v.FunctionCall.Arguments)
 		case llms.ToolCallResponse:
-			s += v.Content
+			s.WriteString(v.Content)
 		}
 	}
-	return s
+	return s.String()
 }
